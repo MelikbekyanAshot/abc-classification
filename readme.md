@@ -13,6 +13,7 @@ Let's say we have dataframe
 | 	lipstick	   | 6000       |
 | 	concealer	  | 5000       |
 | 	sculptors 	 | 4000       |
+
 You can create ABCClasifier object, pass your dataframe 
 to it and call classify method.
 ```
