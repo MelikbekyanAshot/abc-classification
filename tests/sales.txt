@@ -1,0 +1,8 @@
+product,total_sold
+fade cream,27000
+powders,24000
+shadows,18000
+mascara,16000
+lipstick,6000
+concealer,5000
+sculptors,4000

@@ -15,11 +15,16 @@ class ABCClassifier:
     def classify(self, abc_column: str, criterion: str) -> pd.DataFrame:
         """Make ABC classification for values from abc_column.
         Dataframe must be grouped by abc_column.
+
         Args:
-            abc_column (str) - column with values to classify.
-            criterion (str) - column with criterion for classification.
-        Return:
-            abc_df (pd.DataFrame) - classified dataframe."""
+            abc_column (str): column with values to classify.
+            criterion (str): column with criterion for classification.
+
+        Returns:
+            abc_df (pd.DataFrame): classified dataframe.
+
+        Raises:
+            ValueError: if args are not str."""
         if not isinstance(abc_column, str):
             raise ValueError(f'Column name must be string not {type(abc_column)}')
         if not isinstance(criterion, str):
@@ -36,10 +41,21 @@ class ABCClassifier:
         values = ['A', 'B', 'C']
         abc_df['class'] = np.select(conditions, values)
         abc_df.drop(['percentage', f'cumulative_{criterion}'], axis=1, inplace=True)
+
         return abc_df
 
     def brief_abc(self, abc_df: pd.DataFrame) -> pd.DataFrame:
-        """Return aggregated by class dataframe with brief information about class.
+        """Aggregates dataframe by class with summarized information.
+
         Args:
-            abc_df (pd.DataFrame) - DataFrame for brief information calculation."""
-        return abc_df.groupby('class').sum()
+            abc_df (pd.DataFrame): DataFrame for brief information calculation.
+
+        Returns:
+            brief_abc_df (pd.DataFrame): Dataframe with summarized info.
+
+        Raises:
+            ValueError: if abc_df is not pd.DataFrame."""
+        if not isinstance(abc_df, pd.DataFrame):
+            raise ValueError('Passed object is not pd.DataFrame.')
+        brief_abc_df = abc_df.groupby('class').sum().reset_index()
+        return brief_abc_df

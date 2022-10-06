@@ -1,0 +1,4 @@
+class,total_sold
+A,69000
+B,22000
+C,9000
