@@ -8,7 +8,7 @@ requirements = ["pandas", "numpy"]
 
 setup(
     name="abc_classification",
-    version="0.0.4",
+    version="0.0.6",
     author="Ashot Melikbekyan",
     author_email="melikbekyan.ashot@yandex.ru",
     description="A package for ABC classification",

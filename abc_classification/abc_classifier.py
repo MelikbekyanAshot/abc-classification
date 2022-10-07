@@ -35,9 +35,9 @@ class ABCClassifier:
         total = self.data[criterion].sum()
         abc_df['percentage'] = abc_df[criterion] / total
         abc_df[f'cumulative_{criterion}'] = abc_df['percentage'].cumsum()
-        conditions = [(abc_df[f'cumulative_{criterion}'] <= 0.8),
-                      (abc_df[f'cumulative_{criterion}'] <= 0.95),
-                      (abc_df[f'cumulative_{criterion}'] > 0.95)]
+        conditions = [(abc_df[f'cumulative_{criterion}'] <= 0.7),
+                      (abc_df[f'cumulative_{criterion}'] <= 0.9),
+                      (abc_df[f'cumulative_{criterion}'] > 0.9)]
         values = ['A', 'B', 'C']
         abc_df['class'] = np.select(conditions, values)
         abc_df.drop(['percentage', f'cumulative_{criterion}'], axis=1, inplace=True)
