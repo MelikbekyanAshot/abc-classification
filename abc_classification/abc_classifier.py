@@ -1,9 +1,9 @@
 """Module for ABC classification in business analysis."""
+from typing import Optional
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
-from typing import Optional
 
 
 class ABCClassifier:
@@ -73,17 +73,19 @@ class ABCClassifier:
             data (pd.DataFrame): abc classified dataframe.
             values (str): column of data containing values.
             labels (str): column of data containing labels.
-            title (str, optional): title of plot."""
+            title (str, optional): title of plot. Defaults to 'Pareto chart'."""
         data = data.copy()
         data["cumulative_percentage"] = data[labels].cumsum() / data[labels].sum() * 100
-        fig, ax = plt.subplots()
+        fig, values_axis = plt.subplots()
         plt.xticks(rotation=25)
         plt.title(title)
-        ax.bar(data[values], data[labels])
-        ax2 = ax.twinx()
-        ax2.plot(data[values], data["cumulative_percentage"], color="C1", marker="D", ms=7)
-        ax2.yaxis.set_major_formatter(PercentFormatter())
+        values_axis.bar(data[values], data[labels])
+        cumulative_percentage_axis = values_axis.twinx()
+        cumulative_percentage_axis.plot(data[values],
+                                        data["cumulative_percentage"],
+                                        color="C1", marker="D", ms=7)
+        cumulative_percentage_axis.yaxis.set_major_formatter(PercentFormatter())
 
-        ax.tick_params(axis="y", colors="C0")
-        ax2.tick_params(axis="y", colors="C1")
+        values_axis.tick_params(axis="y", colors="C0")
+        cumulative_percentage_axis.tick_params(axis="y", colors="C1")
         plt.show()

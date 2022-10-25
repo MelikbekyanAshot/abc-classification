@@ -49,3 +49,8 @@ abc_clf.brief_abc(abc_df)
 | A     | 69000      |
 | B     | 16000      |
 | C     | 15000      |
+You can plot pareto chart.
+```
+abc_clf.pareto_chart(df, 'total_sold', 'product')
+```
+![Pareto chart](images/pareto_chart.png)
