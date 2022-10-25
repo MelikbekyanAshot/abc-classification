@@ -3,6 +3,6 @@ fade cream,27000,A
 powders,24000,A
 shadows,18000,A
 mascara,16000,B
-lipstick,6000,B
+lipstick,6000,C
 concealer,5000,C
 sculptors,4000,C

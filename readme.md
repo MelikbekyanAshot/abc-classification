@@ -2,6 +2,14 @@
 ABC classification is an inventory categorisation technique. A typical example of ABC classification is the segmentation of products (entity) based on sales (value). The best-selling products that contribute to up to 70% of the total sales belong to cluster A. The products making up the next 20% of sales are in cluster B, whereas the products representing the last 10% of sales, belong to class C. Hence, the pattern is named after the three clusters (ABC).
 
 ## Example
+Installation
+```
+pip install abc-classification
+```
+Import 
+```
+from abc_classification.abc_classifier import ABCClassifier
+```
 Let's say we have dataframe 
 
 | product      | total sold |
