@@ -3,6 +3,7 @@ import unittest
 import pandas as pd
 from pandas.testing import assert_frame_equal
 from abc_classification.abc_classifier import ABCClassifier
+from abc_classification.abc_visualiser import pareto_chart
 
 
 class Test(unittest.TestCase):
@@ -26,6 +27,10 @@ class Test(unittest.TestCase):
         assert_frame_equal(self.abc_classifier.brief_abc(classified),
                            self.true_brief_abc)
         self.assertRaises(ValueError, self.abc_classifier.brief_abc, [1, 2, 3])
+
+    def test_pareto_chart(self):
+        classified = self.abc_classifier.classify('product', 'total_sold')
+        pareto_chart(classified, 'total_sold', 'product')
 
 
 if __name__ == "__main__":

@@ -1,9 +1,6 @@
 """Module for ABC classification in business analysis."""
-from typing import Optional
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
 
 
 class ABCClassifier:
@@ -62,30 +59,3 @@ class ABCClassifier:
             raise ValueError('Passed object is not pd.DataFrame.')
         brief_abc_df = abc_df.groupby('class').sum().reset_index()
         return brief_abc_df
-
-    def pareto_chart(self,
-                     data: pd.DataFrame,
-                     values: str, labels: str,
-                     title: Optional[str] = 'Pareto chart') -> None:
-        """Plots pareto chart.
-
-        Args:
-            data (pd.DataFrame): abc classified dataframe.
-            values (str): column of data containing values.
-            labels (str): column of data containing labels.
-            title (str, optional): title of plot. Defaults to 'Pareto chart'."""
-        data = data.copy()
-        data["cumulative_percentage"] = data[labels].cumsum() / data[labels].sum() * 100
-        fig, values_axis = plt.subplots()
-        plt.xticks(rotation=25)
-        plt.title(title)
-        values_axis.bar(data[values], data[labels])
-        cumulative_percentage_axis = values_axis.twinx()
-        cumulative_percentage_axis.plot(data[values],
-                                        data["cumulative_percentage"],
-                                        color="C1", marker="D", ms=7)
-        cumulative_percentage_axis.yaxis.set_major_formatter(PercentFormatter())
-
-        values_axis.tick_params(axis="y", colors="C0")
-        cumulative_percentage_axis.tick_params(axis="y", colors="C1")
-        plt.show()

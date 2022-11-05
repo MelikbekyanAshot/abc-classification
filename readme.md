@@ -24,10 +24,12 @@ Let's say we have dataframe
 
 You can create ABCClasifier object, pass your dataframe 
 to it and call classify method.
+
 ```
 abc_clf = ABCClassifier(df)
 abc_df = abc_clf.classify('product', 'total sold')
 ```
+
 This way you'll get new dataframe with classified products.
 
 | product      | total sold | class |
@@ -49,8 +51,12 @@ abc_clf.brief_abc(abc_df)
 | A     | 69000      |
 | B     | 16000      |
 | C     | 15000      |
+
 You can plot pareto chart.
 ```
-abc_clf.pareto_chart(df, 'total_sold', 'product')
+from abc_classification.abc_visualiser import pareto_chart
+
+
+pareto_chart(abc_df, 'total_sold', 'product')
 ```
 ![Pareto chart](images/pareto_chart.png)
